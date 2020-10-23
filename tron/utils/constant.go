@@ -15,19 +15,14 @@ var TestNet bool
 //  使用哪个网络 shasta or else
 var NetName string
 
-const NetShasta = "shasta"
-
-
 //  随机获取一个full node ip
 func GetRandFullNodeAddr() string {
-	if NetShasta == NetName {
-		if TestNet {
-			return TestFullNodeListShasta[rand.Int31n(int32(len(TestFullNodeListShasta)))]
-		}
-		return FullNodeListShasta[rand.Int31n(int32(len(FullNodeListShasta)))]
-	}
 	if TestNet {
-		return TestFullNodeList[rand.Int31n(int32(len(TestFullNodeList)))]
+		if NetName == "shasta" {
+			return TestFullNodeListShasta[rand.Int31n(int32(len(TestFullNodeListShasta)))]
+		} else if NetName == "nile" {
+			return TestFullNodeListNile[rand.Int31n(int32(len(TestFullNodeListShasta)))]
+		}
 	}
 	return FullNodeList[rand.Int31n(int32(len(FullNodeList)))]
 }
@@ -41,18 +36,13 @@ const (
 	DefaultP2pPort = 18888
 )
 
-
-
-var FullNodeListShasta = []string{
-	"grpc.trongrid.io:50051",
-}
-
-
 var TestFullNodeListShasta = []string{
 	"grpc.shasta.trongrid.io:50051",
-	//"47.252.19.181:50051",
 }
 
+var TestFullNodeListNile = []string{
+	"47.252.19.181:50051",
+}
 
 // FullNodeList Full节点列表
 var FullNodeList = []string{
@@ -87,36 +77,4 @@ var FullNodeList = []string{
 	// "13.250.40.82",
 	// "35.183.101.48",
 	// "47.104.11.194", // grpc connection failed
-}
-
-
-
-var TestFullNodeList = []string{
-	"47.90.240.201",
-	"47.89.188.246",
-	"47.90.208.195",
-	"47.89.188.162",
-	"47.89.185.110",
-	"47.89.183.137",
-	"47.90.240.239",
-	"47.88.55.186",
-	"47.254.75.152",
-	"47.254.36.2",
-	"47.254.73.154",
-	"47.254.20.22",
-	"47.254.33.129",
-	"47.254.45.208",
-	"47.74.159.205",
-	"47.74.149.105",
-	"47.74.144.205",
-	"47.74.159.52",
-	"47.88.237.77",
-	"47.74.149.180",
-	"47.88.229.149",
-	"47.74.182.133",
-	"47.88.229.123",
-	"47.74.152.210",
-	"47.75.205.223",
-	"47.75.113.95",
-	"47.75.57.234",
 }
