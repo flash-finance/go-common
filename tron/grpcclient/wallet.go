@@ -28,6 +28,7 @@ func GetRandomWallet() *Wallet {
 	} else {
 		serverAddr = fmt.Sprintf("%v:%v", addr, utils.DefaultGrpPort)
 	}
+	fmt.Printf("GetRandomWallet serverAddr: %v\n", serverAddr)
 	ret := &Wallet{}
 	ret.serverAddr = serverAddr
 	ret.Connect()
